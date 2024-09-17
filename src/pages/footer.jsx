@@ -4,7 +4,7 @@ export default function Footer() {
       <footer className="footer">
         <ul>
           <li>
-            <a href="/AboutUsPage">About us!</a>
+            <a href="/AboutUsPage">About us</a>
           </li>
           <li>
             <a href="/TermsAndConditionPage">Terms and Conditions</a>
