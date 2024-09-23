@@ -18,11 +18,11 @@ export default function Header() {
           </h1>
         </div>
         <nav className="flex space-x-4 ">
-          <a href="/LogininPage" className="font-medium text-black">
+          <a href="/Login" className="font-medium text-black">
             Sign In
           </a>
 
-          <a href="/SignUppage" className="font-medium text-black">
+          <a href="/Signup" className="font-medium text-black">
             Sign Up
           </a>
 
