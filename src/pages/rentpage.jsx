@@ -1,5 +1,5 @@
 import Family from "../assets/img/Family.jpg";
-export default function HomePage() {
+export default function RentPage() {
   return (
     <div className="homepage">
       <div>
@@ -42,34 +42,34 @@ export default function HomePage() {
           Properties for Sale in the Western Cape
         </h1>
         <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/buypage">
+          <a href="/rentpage">
             <button>Bellville</button>
           </a>
-          <a href="/buypage">
+          <a href="/rentpage">
             <button>Cape Town</button>
           </a>
         </div>
         <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/buypage">
+          <a href="/rentpage">
             <button>Durbanville</button>
           </a>
-          <a href="/buypage">
+          <a href="/rentpage">
             <button>Hermanus</button>
           </a>
         </div>
         <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/buypage">
+          <a href="/rentpage">
             <button>Paarl</button>
           </a>
-          <a href="/buypage">
+          <a href="/rentpage">
             <button>Stellenbosch</button>
           </a>
         </div>
         <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/buypage">
+          <a href="/rentpage">
             <button>Summerset West</button>
           </a>
-          <a href="/buypage">
+          <a href="/rentpage">
             <button>George</button>
           </a>
         </div>
