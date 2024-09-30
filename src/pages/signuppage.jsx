@@ -1,7 +1,7 @@
 export default function SignUpForm() {
   return (
     <div className="Form">
-      <form>
+      <form onSubmit>
         <label htmlFor="name">Name</label>
         <br />
         <input type="text" name="name" />

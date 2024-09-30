@@ -1,5 +1,28 @@
 import Family from "../assets/img/Family.jpg";
+import { useEffect, useState } from "react";
+
 export default function HomePage() {
+  const [types, setTypes] = useState([]);
+  useEffect(() => {
+    const fetchTypes = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/realestatetype/list/"
+        );
+        const data = await response.json();
+        console.log(data);
+        const uniqueData = [
+          ...new Map(data.map((item) => [item.Id, item])).values(),
+        ];
+        setTypes(uniqueData);
+      } catch (error) {
+        console.error("Error fetching real estate types:", error);
+      }
+    };
+
+    fetchTypes();
+  }, []);
+
   return (
     <div className="homepage">
       <div>
@@ -25,13 +48,17 @@ export default function HomePage() {
         <input type="text" placeholder="Enter a city, suburb, or area" />
         <button>Search</button>
       </section>
-      <section className="filter-type flex justify-center pt-3 gap-2">
-        <select id="propertyType">
-          <option value="house">House</option>
-          <option value="apartment">Apartment</option>
-          <option value="townhouse">Townhouse</option>
-          <option value="farm">Farm</option>
+
+      <section>
+        <select>
+          <option value="">ALL</option>
+          {types.map((type) => (
+            <option key={type.Id} value={type.Id}>
+              {type.DisplayName}
+            </option>
+          ))}
         </select>
+
         <input type="number" placeholder="Minimum price" />
         <input type="number" placeholder="Maximum price" />
         <input type="number" placeholder="Bedrooms" />
