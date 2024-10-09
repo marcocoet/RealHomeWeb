@@ -1,0 +1,8 @@
+{
+    "local": {
+        "realhome": "https://localhost:8000/api"
+    },
+    "cloud": {
+        "realhome": "https://realhome-api/api"
+    }
+}

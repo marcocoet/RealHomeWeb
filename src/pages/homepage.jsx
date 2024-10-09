@@ -10,7 +10,7 @@ export default function HomePage() {
           "http://localhost:8000/api/realestatetype/list/"
         );
         const data = await response.json();
-        console.log(data);
+
         const uniqueData = [
           ...new Map(data.map((item) => [item.Id, item])).values(),
         ];

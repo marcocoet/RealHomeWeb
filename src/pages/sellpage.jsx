@@ -1,5 +1,19 @@
+import addpropertySchema from "../schema/addproperty.schema";
+import { useSelector, useDispatch } from "react-redux";
+import { addProperty } from "../reducers/addproperty.reducer";
+import { useForm } from "../hooks";
+import Form from "../common/components/Form";
+import { ErrorMessage, Field } from "formik";
+
 import Family from "../assets/img/Family.jpg";
 export default function SellPage() {
+  const dispatch = useDispatch();
+
+  const isPropertyAdded = useSelector(
+    ({ addProperty }) => addProperty?.isPropertyAdded
+  );
+
+  const { isValid } = useForm("addpropertyForm");
   return (
     <div className="homepage">
       <div>
@@ -38,46 +52,97 @@ export default function SellPage() {
           one of our consultants.
         </p>
       </div>
-      <div className="Form">
-        <form>
-          <label htmlFor="propertyType">Type</label>
-          <br />
-          <select id="propertyType">
-            <option value="house">House</option>
-            <option value="apartment">Apartment</option>
-            <option value="townhouse">Townhouse</option>
-            <option value="farm">Farm</option>
-          </select>
-          <br />
-          <br />
-          <label htmlFor="address">Address</label>
-          <br />
-          <input type="text" name="address" />
-          <br />
-          <br />
-          <label htmlFor="email">Email</label>
-          <br />
-          <input type="email" name="email" />
-          <br />
-          <br />
-          <label htmlFor="number">Number</label>
-          <br />
-          <input type="number" name="number"></input>
-          <br />
-          <br />
-          <label htmlFor="name">Name</label>
-          <br />
-          <input type="text" name="name" />
-          <br />
-          <br />
-          <label htmlFor="surname">Surname</label>
-          <br />
-          <input type="text" name="surname" />
-          <br />
-          <br />
+      <div>
+        <Form
+          observe
+          name="addpropertyForm"
+          initialValues={{
+            address: "",
+            type: "",
 
-          <button type="submit">Submit</button>
-        </form>
+            bedrooms: "",
+            bathrooms: "",
+            username: "",
+            email: "",
+          }}
+          validationSchema={addpropertySchema}
+          onSubmit={async (values, { setSubmitting }) => {
+            if (!isValid) {
+              return; // Prevent submission if the form is not valid
+            }
+            await dispatch(addProperty(values));
+            setSubmitting(false); // Reset submitting state
+          }}
+        >
+          {() => (
+            <>
+              <div className="flex, flex-col gap-5 md:flex-row">
+                <div>
+                  <label htmlFor="address">Address:</label>
+                  <Field
+                    type="text"
+                    id="address"
+                    name="address"
+                    autoComplete="street-address"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="type">Property Type:</label>
+                  <Field as="select" id="type" name="type" autoComplete="off">
+                    <option value="">Select a property type</option>
+                    <option value="house">House</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="farm">Farm</option>
+                    <option value="townhouse">Townhouse</option>
+                  </Field>
+                </div>
+                <div>
+                  <label htmlFor="bedrooms">Bedrooms:</label>
+                  <Field
+                    type="number"
+                    id="bedrooms"
+                    name="bedrooms"
+                    autoComplete="off"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="bathrooms">Bathrooms:</label>
+                  <Field
+                    type="number"
+                    id="bathrooms"
+                    name="bathrooms"
+                    autoComplete="off"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="text" name="username">
+                    Username
+                  </label>
+                  <Field
+                    type="text"
+                    id="username"
+                    name="username"
+                    autoComplete="username"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <Field
+                    type="email"
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                  />
+                  <ErrorMessage name="email" id="form_email_id" />
+                </div>
+
+                <button type="submit" disabled={isPropertyAdded}>
+                  Add Property
+                </button>
+              </div>
+            </>
+          )}
+        </Form>
       </div>
     </div>
   );
