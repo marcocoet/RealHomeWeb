@@ -37,17 +37,21 @@ export default function SignUpForm() {
             </div>
             <div>
               <label htmlFor="email">Email</label>
-              <Field type="email" name="email" />
+              <Field type="email" name="email" id="email" />
               <ErrorMessage name="email" id="form_email_id" />
             </div>
             <div>
               <label htmlFor="password">Password</label>
-              <Field type="password" name="password" />
+              <Field type="password" name="password" id="password" />
               <ErrorMessage name="password" id="form_password_id" />
             </div>
             <div>
               <label htmlFor="passwordConfirmation">Confirm Password</label>
-              <Field type="password" name="passwordConfirmation" />
+              <Field
+                type="password"
+                name="passwordConfirmation"
+                id="passwordConfirmation"
+              />
               <ErrorMessage
                 name="passwordConfirmation"
                 id="form_passwordConfirmation_id"

@@ -6,7 +6,29 @@ import Form from "../common/components/Form";
 import { ErrorMessage, Field } from "formik";
 
 import Family from "../assets/img/Family.jpg";
+import { useEffect, useState } from "react";
 export default function SellPage() {
+  const [types, setTypes] = useState([]);
+  useEffect(() => {
+    const fetchTypes = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/realestatetype/list/"
+        );
+        const data = await response.json();
+
+        const uniqueData = [
+          ...new Map(data.map((item) => [item.Id, item])).values(),
+        ];
+        setTypes(uniqueData);
+      } catch (error) {
+        console.error("Error fetching real estate types:", error);
+      }
+    };
+
+    fetchTypes();
+  }, []);
+
   const dispatch = useDispatch();
 
   const isPropertyAdded = useSelector(
@@ -90,10 +112,11 @@ export default function SellPage() {
                   <label htmlFor="type">Property Type:</label>
                   <Field as="select" id="type" name="type" autoComplete="off">
                     <option value="">Select a property type</option>
-                    <option value="house">House</option>
-                    <option value="apartment">Apartment</option>
-                    <option value="farm">Farm</option>
-                    <option value="townhouse">Townhouse</option>
+                    {types.map((type) => (
+                      <option key={type.Id} value={type.Id}>
+                        {type.DisplayName}
+                      </option>
+                    ))}
                   </Field>
                 </div>
                 <div>

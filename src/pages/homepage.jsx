@@ -59,8 +59,8 @@ export default function HomePage() {
           ))}
         </select>
 
-        <input type="number" placeholder="Minimum price" />
-        <input type="number" placeholder="Maximum price" />
+        <input type="number" placeholder="Price Range" />
+
         <input type="number" placeholder="Bedrooms" />
       </section>
 

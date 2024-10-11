@@ -13,7 +13,7 @@ export default class RealHomeService {
         return api.callApi('post', {
             ...__options,
             data: data,
-            uri: '/realestate'
+            uri: '/realestate/add/'
         })
     }
 }
