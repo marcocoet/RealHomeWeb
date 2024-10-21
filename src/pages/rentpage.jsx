@@ -1,23 +1,23 @@
 import Family from "../assets/img/Family.jpg";
-export default function RentPage() {
+
+export default function rentpage() {
   return (
-    <div className="homepage">
+    <div className="rent-page">
       <div>
         <img
           src={Family}
           className="w-full rounded shadow hover:opacity-75 h-80 border-collapse"
           alt="Your dream house"
-        ></img>
+        />
       </div>
-      <div className="flex flex-col justify-between gap-2 pb-4 pt-2 md:flex-row md:items-center bg-blue-200 ">
-        <a href="/home" className="hover:text-gray-300 justify-center">
+      <div className="nav-links flex flex-col justify-between gap-2 pb-4 pt-2 md:flex-row md:items-center bg-blue-200">
+        <a href="/home" className="nav-item hover:text-gray-300">
           Buy
         </a>
-
-        <a href="/rent" className="hover:text-gray-300">
+        <a href="/rent" className="nav-item hover:text-gray-300">
           Rent
         </a>
-        <a href="/sell" className="hover:text-black-300">
+        <a href="/sell" className="nav-item hover:text-gray-300">
           Sell
         </a>
       </div>
@@ -32,46 +32,21 @@ export default function RentPage() {
           <option value="townhouse">Townhouse</option>
           <option value="farm">Farm</option>
         </select>
-        <input type="number" placeholder="Minimum price" />
-        <input type="number" placeholder="Maximum price" />
+        <input type="number" placeholder="Min price" />
+        <input type="number" placeholder="Max price" />
         <input type="number" placeholder="Bedrooms" />
       </section>
 
-      <section className="properties-for-sale bg-blue-200">
+      <section className="properties-for-rent bg-blue-200">
         <h1 className="ml-2 mb-0 self-center text-lg text-primary-green-500">
-          Properties for Sale in the Western Cape
+          Properties for Rent in the Western Cape
         </h1>
         <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/rentpage">
-            <button>Bellville</button>
-          </a>
-          <a href="/rentpage">
-            <button>Cape Town</button>
-          </a>
-        </div>
-        <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/rentpage">
-            <button>Durbanville</button>
-          </a>
-          <a href="/rentpage">
-            <button>Hermanus</button>
-          </a>
-        </div>
-        <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/rentpage">
-            <button>Paarl</button>
-          </a>
-          <a href="/rentpage">
-            <button>Stellenbosch</button>
-          </a>
-        </div>
-        <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/rentpage">
-            <button>Summerset West</button>
-          </a>
-          <a href="/rentpage">
-            <button>George</button>
-          </a>
+          {['Bellville', 'Cape Town', 'Durbanville', 'Hermanus', 'Paarl', 'Stellenbosch', 'Somerset West', 'George'].map(city => (
+            <a href="/rentpage" key={city}>
+              <button>{city}</button>
+            </a>
+          ))}
         </div>
       </section>
     </div>

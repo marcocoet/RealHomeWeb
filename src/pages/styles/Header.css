@@ -1,0 +1,90 @@
+/* Header.css */
+
+.header {
+  background-color: #003366; /* Dark blue background */
+  color: white; /* White text color */
+  width: 100%;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.company-name {
+  color: white; /* Ensures company name is white */
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px; /* Space between buttons */
+}
+
+.nav-link {
+  padding: 10px 15px; /* Padding for the buttons */
+  background-color: transparent; /* Transparent background */
+  color: white; /* White text */
+  text-decoration: none; /* No underline */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth hover transition */
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+}
+
+/* Dropdown styles */
+.properties-dropdown {
+  position: relative; /* Position for absolute dropdown */
+}
+
+.properties-button {
+  padding: 10px 15px; /* Same padding as nav-link */
+  color: white; /* White text for button */
+  background-color: transparent; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+  display: none; /* Hide by default */
+  position: absolute; /* Position dropdown below button */
+  min-width: 160px; /* Adjust width */
+  background-color: white; /* White background for dropdown */
+  border: 1px solid #e5e7eb; /* Light border */
+  border-radius: 0.25rem; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for dropdown */
+  z-index: 10; /* Ensure dropdown is on top */
+}
+
+/* Show dropdown on hover of the properties button */
+.properties-dropdown:hover .dropdown-menu {
+  display: block; /* Show dropdown on hover */
+}
+
+/* Dropdown items styles */
+.dropdown-menu a {
+  display: block; /* Make dropdown links block elements */
+  padding: 10px 15px; /* Padding for links */
+  color: #4a5568; /* Dark gray text */
+  text-decoration: none; /* No underline */
+}
+
+.dropdown-menu a:hover {
+  background-color: #edf2f7; /* Light gray background on hover */
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start; /* Align items to start for smaller screens */
+  }
+
+  .nav-menu {
+    flex-direction: column; /* Stack links vertically on small screens */
+    gap: 10px; /* Reduce space between links */
+  }
+}

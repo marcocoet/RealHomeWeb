@@ -1,0 +1,125 @@
+.homepage {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+.hero-image {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.featured-title {
+  text-align: center;
+  margin: 20px 0;
+  color: #007bff; /* You can choose a different color */
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto; /* Centers the carousel on the page */
+  max-width: 1200px; /* Set a maximum width for the carousel */
+  padding: 0 5cm; /* Add 5cm padding from each side */
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  background-color: white; /* Background for property items */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px; /* Add margin for spacing */
+  padding: 10px; /* Add padding for spacing inside the block */
+  flex: 0 0 calc(33.33% - 20px); /* Each block takes up 33.33% minus margins */
+  box-sizing: border-box; /* Ensure padding and margin are included in the width */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+  position: relative; /* Position relative for absolute positioning of arrows */
+}
+
+.property-image {
+  width: 100%;
+  height: 200px; /* Set a fixed height for uniformity */
+  object-fit: cover; /* Ensures images cover the area without distortion */
+  border-radius: 8px; /* Rounded corners for images */
+}
+
+.property-info {
+  text-align: center;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white; /* White background for arrows */
+  color: black; /* Black arrow color */
+  border: none;
+  padding: 0; /* Remove default padding */
+  width: 40px; /* Width of the arrow buttons */
+  height: 80px; /* Increased height for taller arrows */
+  display: flex; /* Flexbox to center arrow */
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px; /* Optional: Rounded corners for the control buttons */
+  z-index: 10; /* Ensure arrows are above other content */
+}
+
+.left {
+  left: calc(5cm - 20px); /* Adjust left position based on padding */
+}
+
+.right {
+  right: calc(5cm - 20px); /* Adjust right position based on padding */
+}
+
+.carousel-control:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker background on hover */
+}
+
+.carousel-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); /* Slightly increase shadow on hover */
+  transform: translateY(-5px); /* Bring the property forward on hover */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and movement */
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
