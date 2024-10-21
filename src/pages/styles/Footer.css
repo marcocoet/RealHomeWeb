@@ -1,0 +1,57 @@
+/* Ensure the footer is at the bottom of the viewport */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure full height */
+}
+
+/* Footer styles */
+.footer {
+  background-color: #001f3f; /* Dark blue for the footer */
+  color: white; /* White text */
+  text-align: center; /* Center the text */
+  padding: 20px 0; /* Padding for balance */
+  margin-top: auto; /* Pushes footer to the bottom */
+}
+
+.footer-header {
+  display: flex; /* Flexbox for alignment */
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Center items vertically */
+  padding: 0 20px; /* Padding on sides */
+}
+
+.footer-line {
+  height: 2px; /* Height of the line */
+  background-color: #ffffff; /* White color for the line */
+  margin-bottom: 10px; /* Space between line and content */
+}
+
+.footer-icons img {
+  height: 24px; /* Adjust icon size as needed */
+  margin-left: 20px; /* Increased space between icons */
+  filter: brightness(0) invert(1); /* Makes the image white */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center; /* Centers the links horizontally */
+  gap: 20px; /* Adds space between the items */
+}
+
+.footer a {
+  color: #fff; /* White links */
+  text-decoration: none; /* Remove underline */
+  font-size: 1rem; /* Adjust font size */
+  transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+.footer a:hover {
+  color: #007bff; /* Blue hover effect */
+}

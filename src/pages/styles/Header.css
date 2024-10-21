@@ -1,25 +1,58 @@
-/* Header.css */
+/* Ensure the entire page takes up 100% of the viewport height */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
 
+/* React root container should take up the full height */
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header Styles */
 .header {
   background-color: #003366; /* Dark blue background */
   color: white; /* White text color */
   width: 100%;
+  padding: 0; /* Remove padding for a clean look */
+  margin: 0; /* Remove margin to avoid any gaps */
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px; /* Fixed height for the header */
 }
 
+/* Logo container styling */
 .logo-container {
   display: flex;
   align-items: center;
+  padding-left: 20px; /* Optional: Adds space on the left */
 }
 
+/* Company Name Styling (RealHome) */
 .company-name {
   color: white; /* Ensures company name is white */
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; /* Apple-like font */
+  font-size: 1.8rem; /* Adjust font size */
+  font-weight: 600; /* Bold for emphasis */
+  letter-spacing: 0.5px; /* Slight letter spacing */
+  text-transform: uppercase; /* Uppercase styling for modern look */
 }
 
+/* Navigation Menu Styles */
 .nav-menu {
   display: flex;
   gap: 20px; /* Space between buttons */
+  padding-right: 20px; /* Optional: Adds space on the right */
 }
 
+/* Navigation Link Styles */
 .nav-link {
   padding: 10px 15px; /* Padding for the buttons */
   background-color: transparent; /* Transparent background */
@@ -27,13 +60,20 @@
   text-decoration: none; /* No underline */
   border-radius: 5px; /* Rounded corners */
   transition: background-color 0.3s; /* Smooth hover transition */
+  
+  /* Apple-like font styles */
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; /* Similar to Apple's font */
+  font-size: 16px; /* Adjust font size for readability */
+  font-weight: 500; /* Semi-bold for a sleek look */
+  letter-spacing: 0.5px; /* Slight letter spacing */
+  text-transform: uppercase; /* Optional: Adds a modern uppercase style */
 }
 
 .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
 }
 
-/* Dropdown styles */
+/* Dropdown Styles */
 .properties-dropdown {
   position: relative; /* Position for absolute dropdown */
 }
@@ -45,9 +85,20 @@
   border: none; /* No border */
   cursor: pointer; /* Pointer cursor on hover */
   transition: background-color 0.3s; /* Smooth transition */
+
+  /* Apple-like font styles */
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; /* Apple-like font */
+  font-size: 16px; /* Font size matching nav links */
+  font-weight: 500; /* Semi-bold for a sleek look */
+  letter-spacing: 0.5px; /* Slight letter spacing */
+  text-transform: uppercase; /* Optional: Modern uppercase styling */
 }
 
-/* Dropdown menu styles */
+.properties-button:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+}
+
+/* Dropdown Menu Styles */
 .dropdown-menu {
   display: none; /* Hide by default */
   position: absolute; /* Position dropdown below button */
@@ -70,17 +121,31 @@
   padding: 10px 15px; /* Padding for links */
   color: #4a5568; /* Dark gray text */
   text-decoration: none; /* No underline */
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; /* Apple-like font */
+  font-size: 14px; /* Slightly smaller for dropdown */
 }
 
 .dropdown-menu a:hover {
   background-color: #edf2f7; /* Light gray background on hover */
 }
 
-/* Responsive styling */
+/* Main content should take up remaining space */
+.main-content {
+  flex-grow: 1; /* This makes the content take up remaining height */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  background-color: #f5f5f5; /* Optional: Background color for content */
+  padding: 20px; /* Optional: Padding inside the content area */
+}
+
+/* Responsive styling for smaller screens */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
-    align-items: flex-start; /* Align items to start for smaller screens */
+    align-items: flex-start; /* Stack items on smaller screens */
+    padding-left: 10px; /* Padding for small screens */
+    padding-right: 10px; /* Padding for small screens */
   }
 
   .nav-menu {

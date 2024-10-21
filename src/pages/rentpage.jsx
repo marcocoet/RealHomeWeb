@@ -1,54 +1,158 @@
-import Family from "../assets/img/Family.jpg";
+import { useState } from "react";
+import Map from "./Map"; // Adjusted import path
+import MainImage from "./images/mainpage1.jpg"; // Updated image path
+import './styles/rentpage.css'; // Ensure the path to your CSS file is correct
 
-export default function rentpage() {
+export default function RentPage() {
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000000);
+  const [propertyType, setPropertyType] = useState("house");
+  const [searchTerm, setSearchTerm] = useState(""); // New state for search term
+  const [showFilters, setShowFilters] = useState(false); // State to toggle filters
+
   return (
     <div className="rent-page">
-      <div>
-        <img
-          src={Family}
-          className="w-full rounded shadow hover:opacity-75 h-80 border-collapse"
-          alt="Your dream house"
-        />
+      <div className="image-container">
+        <img src={MainImage} className="main-image" alt="Main Page" />
       </div>
-      <div className="nav-links flex flex-col justify-between gap-2 pb-4 pt-2 md:flex-row md:items-center bg-blue-200">
-        <a href="/home" className="nav-item hover:text-gray-300">
-          Buy
-        </a>
-        <a href="/rent" className="nav-item hover:text-gray-300">
-          Rent
-        </a>
-        <a href="/sell" className="nav-item hover:text-gray-300">
-          Sell
-        </a>
-      </div>
-      <section className="search-bar">
-        <input type="text" placeholder="Enter a city, suburb, or area" />
-        <button>Search</button>
-      </section>
-      <section className="filter-type flex justify-center pt-3 gap-2">
-        <select id="propertyType">
-          <option value="house">House</option>
-          <option value="apartment">Apartment</option>
-          <option value="townhouse">Townhouse</option>
-          <option value="farm">Farm</option>
-        </select>
-        <input type="number" placeholder="Min price" />
-        <input type="number" placeholder="Max price" />
-        <input type="number" placeholder="Bedrooms" />
+
+      <section className="filter-section flex justify-center pt-3">
+        <button className="filter-toggle" onClick={() => setShowFilters(!showFilters)}>
+          {showFilters ? "Less Filters" : "More Filters"}
+        </button>
+
+        {showFilters && (
+          <div className="filter-options">
+            <div className="filter-group">
+              <label>Property Type:</label>
+              <select
+                id="propertyType"
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
+                className="filter-select"
+              >
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <option value="townhouse">Townhouse</option>
+                <option value="farm">Farm</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Min Price:</label>
+              <input
+                type="range"
+                min="0"
+                max={maxPrice}
+                step="25000"
+                value={minPrice}
+                onChange={(e) => setMinPrice(Number(e.target.value))}
+                className="slider"
+              />
+              <span>R{minPrice.toLocaleString()}</span>
+            </div>
+
+            <div className="filter-group">
+              <label>Max Price:</label>
+              <input
+                type="range"
+                min={minPrice}
+                max="1000000"
+                step="25000"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(Number(e.target.value))}
+                className="slider"
+              />
+              <span>R{maxPrice.toLocaleString()}</span>
+            </div>
+
+            <div className="filter-group">
+              <label>Bedrooms:</label>
+              <select className="filter-select">
+                <option value="">Any</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3+</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Bathrooms:</label>
+              <select className="filter-select">
+                <option value="">Any</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3+</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Parking / Garage:</label>
+              <select className="filter-select">
+                <option value="">Any</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Furnished:</label>
+              <select className="filter-select">
+                <option value="">Any</option>
+                <option value="furnished">Furnished</option>
+                <option value="unfurnished">Unfurnished</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Move-in Date:</label>
+              <input type="date" className="filter-select" />
+            </div>
+
+            <div className="filter-group">
+              <label>Rental Term:</label>
+              <select className="filter-select">
+                <option value="">Any</option>
+                <option value="short-term">Short Term</option>
+                <option value="long-term">Long Term</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Features:</label>
+              <div className="checkbox-group">
+                <label><input type="checkbox" /> Pet Friendly</label>
+                <label><input type="checkbox" /> Garden</label>
+                <label><input type="checkbox" /> Pool</label>
+                <label><input type="checkbox" /> Flatlet</label>
+                <label><input type="checkbox" /> Other</label>
+                <label><input type="checkbox" /> Retirement</label>
+                <label><input type="checkbox" /> On Show</label>
+                <label><input type="checkbox" /> Security Estate / Cluster</label>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
-      <section className="properties-for-rent bg-blue-200">
-        <h1 className="ml-2 mb-0 self-center text-lg text-primary-green-500">
-          Properties for Rent in the Western Cape
-        </h1>
-        <div className="flex justify-center gap-2 pb-4 pt-2">
-          {['Bellville', 'Cape Town', 'Durbanville', 'Hermanus', 'Paarl', 'Stellenbosch', 'Somerset West', 'George'].map(city => (
-            <a href="/rentpage" key={city}>
-              <button>{city}</button>
-            </a>
-          ))}
-        </div>
+      {/* This is the functional search bar */}
+      <section className="map-search-bar flex justify-center pt-4">
+        <input
+          type="text"
+          placeholder="Search for places"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+          className="search-input"
+        />
+        <button className="search-button">Search</button>
       </section>
+
+      <Map 
+        minPrice={minPrice} 
+        maxPrice={maxPrice} 
+        propertyType={propertyType} 
+        searchTerm={searchTerm} // Pass search term to Map component if needed
+      />
     </div>
   );
 }

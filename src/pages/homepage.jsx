@@ -68,9 +68,10 @@ const HomePage = () => {
     setProperties(dummyProperties);
   }, []);
 
+  const itemsToShow = 3; // Number of properties to show at once
+
   const moveCarousel = (direction) => {
     const totalProperties = properties.length;
-    const itemsToShow = 3;
     const maxIndex = Math.ceil(totalProperties / itemsToShow) - 1;
 
     setCurrentIndex((prevIndex) => {
@@ -84,6 +85,12 @@ const HomePage = () => {
     });
   };
 
+  // Get the properties to display based on the current index
+  const displayedProperties = properties.slice(
+    currentIndex * itemsToShow,
+    currentIndex * itemsToShow + itemsToShow
+  );
+
   return (
     <div className="homepage">
       <header>
@@ -95,18 +102,18 @@ const HomePage = () => {
       <div className="hero-image">
         <img src={mainImage} alt="Welcome to Realhome" className="hero-img" />
         <div className="overlay">
-          <h1>Welcome to Realhome</h1>
-          <p>Find your dream property with us!</p>
+          <h1 className="hero-title">Welcome to Realhome</h1>
+          <p className="hero-subtitle">Find your dream property with us!</p>
         </div>
       </div>
 
       <h2 className="featured-title">Featured Properties</h2>
       <div className="carousel">
-        <div
-          className="carousel-inner"
-          style={{ transform: `translateX(-${currentIndex * 33.333}%)` }}
-        >
-          {properties.map((property) => (
+        <button className="carousel-control left" onClick={() => moveCarousel(-1)}>
+          &lt;
+        </button>
+        <div className="carousel-inner">
+          {displayedProperties.map((property) => (
             <div key={property.id} className="carousel-item">
               <img src={property.image} alt={property.title} className="property-image" />
               <div className="property-info">
@@ -117,17 +124,10 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-        <button className="carousel-control left" onClick={() => moveCarousel(-1)}>
-          &lt;
-        </button>
         <button className="carousel-control right" onClick={() => moveCarousel(1)}>
           &gt;
         </button>
       </div>
-
-      <footer>
-        <p>&copy; 2023 Realhome. All rights reserved.</p>
-      </footer>
     </div>
   );
 };

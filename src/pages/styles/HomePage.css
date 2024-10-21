@@ -1,24 +1,13 @@
+/* General Styles */
 .homepage {
-  font-family: Arial, sans-serif;
-}
-
-header {
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
   text-align: center;
-}
-
-.menu a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
+  font-family: Arial, sans-serif;
 }
 
 .hero-image {
   position: relative;
   width: 100%;
-  height: 400px; /* Adjust height as needed */
+  height: 400px;
   overflow: hidden;
 }
 
@@ -34,92 +23,106 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Styling for the main "Welcome to Realhome" text */
+.hero-title {
+  font-size: 3.5rem; /* Increased font size */
+  margin: 0;
+}
+
+/* Styling for the "Find your dream property with us!" text */
+.hero-subtitle {
+  font-family: 'Courier New', Courier, monospace; /* Changed font family */
+  background-color: red; /* Solid red background */
+  padding: 10px 20px;
+  border-radius: 10px; /* Rounded corners */
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 1.2rem;
 }
 
 .featured-title {
-  text-align: center;
-  margin: 20px 0;
-  color: #007bff; /* You can choose a different color */
+  font-size: 2rem;
+  margin: 40px 0;
 }
 
 .carousel {
   position: relative;
-  overflow: hidden;
-  margin: 0 auto; /* Centers the carousel on the page */
-  max-width: 1200px; /* Set a maximum width for the carousel */
-  padding: 0 5cm; /* Add 5cm padding from each side */
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden; /* Hide items outside of the view */
+  padding: 0 100px; /* Padding for more space between property boxes and sides */
 }
 
 .carousel-inner {
   display: flex;
+  justify-content: center;
   transition: transform 0.5s ease-in-out;
 }
 
 .carousel-item {
-  background-color: white; /* Background for property items */
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  margin: 10px; /* Add margin for spacing */
-  padding: 10px; /* Add padding for spacing inside the block */
-  flex: 0 0 calc(33.33% - 20px); /* Each block takes up 33.33% minus margins */
-  box-sizing: border-box; /* Ensure padding and margin are included in the width */
-  transition: transform 0.3s ease; /* Smooth transition for hover effect */
-  position: relative; /* Position relative for absolute positioning of arrows */
+  flex: 0 0 23%; /* Smaller size for the property boxes */
+  margin: 0 25px; /* More space between the property boxes */
+  box-sizing: border-box;
 }
 
 .property-image {
   width: 100%;
-  height: 200px; /* Set a fixed height for uniformity */
-  object-fit: cover; /* Ensures images cover the area without distortion */
-  border-radius: 8px; /* Rounded corners for images */
+  height: 150px; /* Smaller height for uniform image size */
+  object-fit: cover; /* Ensure the image covers the box evenly */
+  border-radius: 10px;
 }
 
 .property-info {
-  text-align: center;
+  margin-top: 10px;
 }
 
+.property-info h3 {
+  font-size: 1.2rem; /* Slightly smaller font for titles */
+}
+
+.property-info p {
+  margin: 5px 0;
+  font-size: 0.8rem; /* Smaller font for the price and location */
+}
+
+/* Carousel Controls */
 .carousel-control {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: white; /* White background for arrows */
-  color: black; /* Black arrow color */
+  background-color: rgba(255, 255, 255, 0.8);
   border: none;
-  padding: 0; /* Remove default padding */
-  width: 40px; /* Width of the arrow buttons */
-  height: 80px; /* Increased height for taller arrows */
-  display: flex; /* Flexbox to center arrow */
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px; /* Optional: Rounded corners for the control buttons */
-  z-index: 10; /* Ensure arrows are above other content */
-}
-
-.left {
-  left: calc(5cm - 20px); /* Adjust left position based on padding */
-}
-
-.right {
-  right: calc(5cm - 20px); /* Adjust right position based on padding */
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 2rem;
+  color: #333;
+  transition: background-color 0.3s ease;
 }
 
 .carousel-control:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker background on hover */
+  background-color: rgba(255, 255, 255, 1);
 }
 
-.carousel-item:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); /* Slightly increase shadow on hover */
-  transform: translateY(-5px); /* Bring the property forward on hover */
-  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and movement */
+.left {
+  left: 10px; /* Move the left arrow closer to the boxes */
 }
 
+.right {
+  right: 10px; /* Move the right arrow closer to the boxes */
+}
+
+/* Footer */
 footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #333;
-  color: white;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+  margin-top: 50px;
+  padding: 20px 0;
+  background-color: #f8f8f8;
+}
+
+footer p {
+  margin: 0;
+  color: #555;
 }
