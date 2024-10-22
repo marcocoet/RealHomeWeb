@@ -1,9 +1,23 @@
 import Family from "../assets/img/Family.jpg";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRealEstateTypes } from "../reducers/realestatetypes.reducer";
 export default function RentPage() {
+  const dispatch = useDispatch();
+  const { loading, types, error } = useSelector(
+    (state) => state.realEstateTypes
+  );
+
+  useEffect(() => {
+    dispatch(fetchRealEstateTypes());
+  }, [dispatch]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
   return (
     <div className="rent-page">
       <div className="image-container">
-        <img src={MainImage} className="main-image" alt="Main Page" />
+        <img src={Family} className="main-image" alt="Main Page" />
       </div>
       <div className="flex flex-col justify-between gap-2 pb-4 pt-2 md:flex-row md:items-center bg-blue-200 ">
         <a href="/home" className="hover:text-gray-300 justify-center">
@@ -22,35 +36,18 @@ export default function RentPage() {
         <button>Search</button>
       </section>
       <section className="filter-type flex justify-center pt-3 gap-2">
-        <select id="propertyType">
-          <option value="house">House</option>
-          <option value="apartment">Apartment</option>
-          <option value="townhouse">Townhouse</option>
-          <option value="farm">Farm</option>
+        <select>
+          <option value="">ALL</option>
+          {types.map((type) => (
+            <option key={type.Id} value={type.Id}>
+              {type.DisplayName}
+            </option>
+          ))}
         </select>
         <input type="number" placeholder="Minimum price" />
         <input type="number" placeholder="Maximum price" />
         <input type="number" placeholder="Bedrooms" />
       </section>
-
-      {/* This is the functional search bar */}
-      <section className="map-search-bar flex justify-center pt-4">
-        <input
-          type="text"
-          placeholder="Search for places"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
-          className="search-input"
-        />
-        <button className="search-button">Search</button>
-      </section>
-
-      <Map
-        minPrice={minPrice}
-        maxPrice={maxPrice}
-        propertyType={propertyType}
-        searchTerm={searchTerm} // Pass search term to Map component if needed
-      />
     </div>
   );
 }
