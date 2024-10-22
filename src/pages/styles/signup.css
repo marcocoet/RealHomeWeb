@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Set default font for the body */
+body {
+    font-family: 'Poppins', sans-serif; /* Applying Poppins font */
+}
+
+/* Container for centering the form vertically and horizontally */
+.signup-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background: url('../images/signup.jpg') no-repeat center center; /* Background image */
+    background-size: cover; /* Cover the whole container */
+    padding: 20px;
+}
+
+/* Toggle button styling */
+.signup-toggle {
+    cursor: pointer; /* Pointer cursor for the button */
+    text-align: center; /* Center the text */
+    background-color: white; /* Button background color */
+    color: #1877f2; /* Button text color */
+    padding: 10px; /* Padding for the button */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 1rem; /* Space between button and form */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.signup-toggle:hover {
+    background-color: #f0f2f5; /* Slightly darker shade on hover */
+}
+
+/* Signup form styling */
+.signup-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow for better contrast */
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Form title styling */
+.signup-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem; /* Slightly larger font size */
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 1.25rem; /* Increased spacing between fields */
+}
+
+/* Label styling */
+.signup-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Input field styling */
+.signup-form input {
+    width: 100%;
+    padding: 12px; /* Increased padding for larger input fields */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Slightly rounder corners */
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+/* Add focus effect to input fields */
+.signup-form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Error message styling */
+.signup-form .error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Submit button styling */
+.signup-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.signup-form button:hover {
+    background-color: #166fe5;
+    transform: scale(1.02); /* Adds a subtle grow effect on hover */
+}
+
+.signup-form button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Footer links for sign-up and forgot password */
+.signup-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.signup-footer a {
+    color: #1877f2;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signup-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Social login buttons styling */
+.social-login {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.social-btn:first-child {
+    margin-right: 0.5rem;
+}
+
+.social-btn:hover {
+    opacity: 0.9;
+}
+
+.google {
+    background-color: #db4437;
+    color: white;
+}
+
+.facebook {
+    background-color: #4267B2;
+    color: white;
+}
+
+/* Add some subtle transitions for form interactivity */
+.signup-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}

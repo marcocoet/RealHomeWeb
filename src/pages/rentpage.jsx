@@ -1,28 +1,9 @@
 import Family from "../assets/img/Family.jpg";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchRealEstateTypes } from "../reducers/realestatetypes.reducer";
-
 export default function RentPage() {
-  const dispatch = useDispatch();
-  const { loading, types, error } = useSelector(
-    (state) => state.realEstateTypes
-  );
-
-  useEffect(() => {
-    dispatch(fetchRealEstateTypes());
-  }, [dispatch]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
   return (
-    <div className="homepage">
-      <div>
-        <img
-          src={Family}
-          className="w-full rounded shadow hover:opacity-75 h-80 border-collapse"
-          alt="Your dream house"
-        ></img>
+    <div className="rent-page">
+      <div className="image-container">
+        <img src={MainImage} className="main-image" alt="Main Page" />
       </div>
       <div className="flex flex-col justify-between gap-2 pb-4 pt-2 md:flex-row md:items-center bg-blue-200 ">
         <a href="/home" className="hover:text-gray-300 justify-center">
@@ -41,56 +22,35 @@ export default function RentPage() {
         <button>Search</button>
       </section>
       <section className="filter-type flex justify-center pt-3 gap-2">
-        <select>
-          <option value="">ALL</option>
-          {types.map((type) => (
-            <option key={type.Id} value={type.Id}>
-              {type.DisplayName}
-            </option>
-          ))}
+        <select id="propertyType">
+          <option value="house">House</option>
+          <option value="apartment">Apartment</option>
+          <option value="townhouse">Townhouse</option>
+          <option value="farm">Farm</option>
         </select>
         <input type="number" placeholder="Minimum price" />
         <input type="number" placeholder="Maximum price" />
         <input type="number" placeholder="Bedrooms" />
       </section>
 
-      <section className="properties-for-sale bg-blue-200">
-        <h1 className="ml-2 mb-0 self-center text-lg text-primary-green-500">
-          Properties for Sale in the Western Cape
-        </h1>
-        <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/rentpage">
-            <button>Bellville</button>
-          </a>
-          <a href="/rentpage">
-            <button>Cape Town</button>
-          </a>
-        </div>
-        <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/rentpage">
-            <button>Durbanville</button>
-          </a>
-          <a href="/rentpage">
-            <button>Hermanus</button>
-          </a>
-        </div>
-        <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/rentpage">
-            <button>Paarl</button>
-          </a>
-          <a href="/rentpage">
-            <button>Stellenbosch</button>
-          </a>
-        </div>
-        <div className="flex justify-center gap-2 pb-4 pt-2">
-          <a href="/rentpage">
-            <button>Summerset West</button>
-          </a>
-          <a href="/rentpage">
-            <button>George</button>
-          </a>
-        </div>
+      {/* This is the functional search bar */}
+      <section className="map-search-bar flex justify-center pt-4">
+        <input
+          type="text"
+          placeholder="Search for places"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+          className="search-input"
+        />
+        <button className="search-button">Search</button>
       </section>
+
+      <Map
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+        propertyType={propertyType}
+        searchTerm={searchTerm} // Pass search term to Map component if needed
+      />
     </div>
   );
 }

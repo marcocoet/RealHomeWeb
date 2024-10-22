@@ -1,0 +1,128 @@
+/* General Styles */
+.homepage {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.hero-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Styling for the main "Welcome to Realhome" text */
+.hero-title {
+  font-size: 3.5rem; /* Increased font size */
+  margin: 0;
+}
+
+/* Styling for the "Find your dream property with us!" text */
+.hero-subtitle {
+  font-family: 'Courier New', Courier, monospace; /* Changed font family */
+  background-color: red; /* Solid red background */
+  padding: 10px 20px;
+  border-radius: 10px; /* Rounded corners */
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.featured-title {
+  font-size: 2rem;
+  margin: 40px 0;
+}
+
+.carousel {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden; /* Hide items outside of the view */
+  padding: 0 100px; /* Padding for more space between property boxes and sides */
+}
+
+.carousel-inner {
+  display: flex;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  flex: 0 0 23%; /* Smaller size for the property boxes */
+  margin: 0 25px; /* More space between the property boxes */
+  box-sizing: border-box;
+}
+
+.property-image {
+  width: 100%;
+  height: 150px; /* Smaller height for uniform image size */
+  object-fit: cover; /* Ensure the image covers the box evenly */
+  border-radius: 10px;
+}
+
+.property-info {
+  margin-top: 10px;
+}
+
+.property-info h3 {
+  font-size: 1.2rem; /* Slightly smaller font for titles */
+}
+
+.property-info p {
+  margin: 5px 0;
+  font-size: 0.8rem; /* Smaller font for the price and location */
+}
+
+/* Carousel Controls */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 2rem;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-control:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.left {
+  left: 10px; /* Move the left arrow closer to the boxes */
+}
+
+.right {
+  right: 10px; /* Move the right arrow closer to the boxes */
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  padding: 20px 0;
+  background-color: #f8f8f8;
+}
+
+footer p {
+  margin: 0;
+  color: #555;
+}
