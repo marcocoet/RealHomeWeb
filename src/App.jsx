@@ -15,9 +15,7 @@ function App() {
       <Header />
       <Router>
         <Routes>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/header" element={<Header />} />
-          <Route path="/footer" element={<Footer />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/rent" element={<RentPage />} />

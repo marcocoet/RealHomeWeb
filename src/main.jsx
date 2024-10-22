@@ -1,3 +1,5 @@
+import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+import "leaflet-control-geocoder/dist/Control.Geocoder.js";
 import { StrictMode } from "react";
 import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";

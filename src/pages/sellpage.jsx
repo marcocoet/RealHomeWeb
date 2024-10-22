@@ -4,38 +4,29 @@ import { addProperty } from "../reducers/addproperty.reducer";
 import { useForm } from "../hooks";
 import Form from "../common/components/Form";
 import { ErrorMessage, Field } from "formik";
-
 import Family from "../assets/img/Family.jpg";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { fetchRealEstateTypes } from "../reducers/realestatetypes.reducer";
+import SimpleMap from "./simplemap";
+
 export default function SellPage() {
-  const [types, setTypes] = useState([]);
-  useEffect(() => {
-    const fetchTypes = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8000/api/realestatetype/list/"
-        );
-        const data = await response.json();
-
-        const uniqueData = [
-          ...new Map(data.map((item) => [item.Id, item])).values(),
-        ];
-        setTypes(uniqueData);
-      } catch (error) {
-        console.error("Error fetching real estate types:", error);
-      }
-    };
-
-    fetchTypes();
-  }, []);
-
   const dispatch = useDispatch();
+  const { loading, types, error } = useSelector(
+    (state) => state.realEstateTypes
+  );
 
   const isPropertyAdded = useSelector(
     ({ addProperty }) => addProperty?.isPropertyAdded
   );
 
   const { isValid } = useForm("addpropertyForm");
+
+  useEffect(() => {
+    dispatch(fetchRealEstateTypes());
+  }, [dispatch]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
   return (
     <div className="homepage">
       <div>
@@ -73,6 +64,11 @@ export default function SellPage() {
           millions of monthly viewers. You can list the property yourself or use
           one of our consultants.
         </p>
+      </div>
+      <div className="justify-center">
+        <div className="w-1/2">
+          <SimpleMap className="basis-1/2" />
+        </div>
       </div>
       <div>
         <Form

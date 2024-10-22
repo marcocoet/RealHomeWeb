@@ -21,8 +21,10 @@ export default function SignUpForm() {
       initialValues={{
         username: "",
         email: "",
+        first_name: "",
+        last_name: "",
         password: "",
-        passwordConfirmation: "",
+        confirm_password: "",
       }}
       validationSchema={signupSchema}
     >
@@ -41,6 +43,16 @@ export default function SignUpForm() {
               <ErrorMessage name="email" id="form_email_id" />
             </div>
             <div>
+              <label htmlFor="first_name">First name</label>
+              <Field type="text" name="first_name" id="first_name"></Field>
+              <ErrorMessage name="first_name" id="form_first_name_id" />
+            </div>
+            <div>
+              <label htmlFor="last_name">Last name</label>
+              <Field type="text" name="last_name" id="last_name"></Field>
+              <ErrorMessage name="last_name" id="form_last_name_id" />
+            </div>
+            <div>
               <label htmlFor="password">Password</label>
               <Field type="password" name="password" id="password" />
               <ErrorMessage name="password" id="form_password_id" />
@@ -49,12 +61,12 @@ export default function SignUpForm() {
               <label htmlFor="passwordConfirmation">Confirm Password</label>
               <Field
                 type="password"
-                name="passwordConfirmation"
-                id="passwordConfirmation"
+                name="confirm_password"
+                id="confirm_password"
               />
               <ErrorMessage
-                name="passwordConfirmation"
-                id="form_passwordConfirmation_id"
+                name="confirm_password"
+                id="form_confirm_password_id"
               />
             </div>
             <button

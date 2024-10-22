@@ -6,7 +6,7 @@ export default class RealHomeService {
         return api.callApi('post', {
             ...__options,
             data: data,
-            uri: '/users'
+            uri: '/users/'
         })
     }
     static addProperty(data,__options) {
@@ -16,4 +16,13 @@ export default class RealHomeService {
             uri: '/realestate/add/'
         })
     }
-}
+    static loginUser(data, __options) {
+        return api.callApi('post', {
+            ...__options,
+            data: data,
+            uri: '/token/'
+        })
+    
+        
+    }
+    }

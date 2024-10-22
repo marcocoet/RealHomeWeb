@@ -15,6 +15,16 @@ class Api {
     }, 400);
   }
 
+  
+setToken(token) {
+  this.token = token;
+  localStorage.setItem('token', token);
+}
+
+getToken() {
+  return localStorage.getItem('token')
+}
+
   callApi(method, options ) {
     let completeUrl = 
         options && options.completeUrl
@@ -30,6 +40,11 @@ class Api {
             ? options.acceptType
             : 'application/json',
       };
+
+      const token = this.getToken()
+      if (token) {
+        headers['Authorization'] = 'Bearer ' + token
+      }
   
       completeUrl = completeUrl.replace(/[&]{0,1}[a-zA-Z0-9]*=undefined/g, '');
   
@@ -97,6 +112,10 @@ class Api {
                   });
               }
             } else {
+              if (response.status === 401) {
+                localStorage.clear();
+                window.location.href = '/Login'
+              }
               if (response.status === 304) {
                 resolve();
               } else {
