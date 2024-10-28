@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, forwardRef } from "react";
+import { useEffect, useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 
 import { Formik, Form as FormikForm } from "formik";

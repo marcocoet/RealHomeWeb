@@ -3,59 +3,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { addProperty } from "../reducers/addproperty.reducer";
 import { useForm } from "../hooks";
 import Form from "../common/components/Form";
-import { ErrorMessage, Field } from "formik";
-import Family from "../assets/img/Family.jpg";
-import { useEffect } from "react";
-import { fetchRealEstateTypes } from "../reducers/realestatetypes.reducer";
-import SimpleMap from "./simplemap";
+import { Field } from "formik";
+import api from "../api/api";
+import { useNavigate } from "react-router-dom";
+import Map from "../pages/Map";
 
 export default function SellPage() {
   const dispatch = useDispatch();
-  const { loading, types, error } = useSelector(
-    (state) => state.realEstateTypes
-  );
+  const navigate = useNavigate();
+
+  const { types } = useSelector((state) => state.realEstateTypes);
 
   const isPropertyAdded = useSelector(
     ({ addProperty }) => addProperty?.isPropertyAdded
   );
 
-  const { isValid } = useForm("addpropertyForm");
+  const { isValid, values } = useForm("addpropertyForm");
+  //localStorage.clear();
 
-  useEffect(() => {
-    dispatch(fetchRealEstateTypes());
-  }, [dispatch]);
+  if (!api.hasValidToken())
+    return navigate("/login", { state: { from: "/sell" } });
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
   return (
     <div className="homepage">
-      <div>
-        <img
-          src={Family}
-          className="w-full rounded shadow hover:opacity-75 h-80 border-collapse"
-          alt="Your dream house"
-        ></img>
-      </div>
-      <div className="flex flex-col justify-between gap-2 pb-4 pt-2 md:flex-row md:items-center bg-blue-200 ">
-        <a href="/home" className="hover:text-gray-300 justify-center">
-          Buy
-        </a>
-
-        <a href="/rent" className="hover:text-gray-300">
-          Rent
-        </a>
-        <a href="/sell" className="hover:text-black-300">
-          Sell
-        </a>
-      </div>
-      <div className="flex justify-center gap-4">
-        <a href="/sell" className="hover:text-black-300">
-          Privately
-        </a>
-        <a href="/sellwithagent" className="hover:text-black-300">
-          With Agent
-        </a>
-      </div>
       <div className="justify-center">
         <h1>List Your Property Privately</h1>
         <p>
@@ -65,32 +35,24 @@ export default function SellPage() {
           one of our consultants.
         </p>
       </div>
-      <div className="justify-center">
-        <div className="w-1/2">
-          <SimpleMap className="basis-1/2" />
+      <div className="flex justify-center items-center">
+        <div className="w-2/3">
+          <Map minPrice={0} maxPrice={1000000} propertyType="" />
         </div>
       </div>
-      <div>
+      <div className="justify-center">
         <Form
           observe
           name="addpropertyForm"
           initialValues={{
             address: "",
-            type: "",
-
+            type_id: "",
             bedrooms: "",
             bathrooms: "",
-            username: "",
-            email: "",
+            minPrice: "",
+            maxPrice: "",
           }}
           validationSchema={addpropertySchema}
-          onSubmit={async (values, { setSubmitting }) => {
-            if (!isValid) {
-              return; // Prevent submission if the form is not valid
-            }
-            await dispatch(addProperty(values));
-            setSubmitting(false); // Reset submitting state
-          }}
         >
           {() => (
             <>
@@ -105,8 +67,13 @@ export default function SellPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="type">Property Type:</label>
-                  <Field as="select" id="type" name="type" autoComplete="off">
+                  <label htmlFor="type_id">Property Type:</label>
+                  <Field
+                    as="select"
+                    id="type_id"
+                    name="type_id"
+                    autoComplete="off"
+                  >
                     <option value="">Select a property type</option>
                     {types.map((type) => (
                       <option key={type.Id} value={type.Id}>
@@ -115,6 +82,7 @@ export default function SellPage() {
                     ))}
                   </Field>
                 </div>
+
                 <div>
                   <label htmlFor="bedrooms">Bedrooms:</label>
                   <Field
@@ -134,28 +102,34 @@ export default function SellPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="text" name="username">
-                    Username
-                  </label>
+                  <label htmlFor="minPrice">Minimum Price</label>
                   <Field
-                    type="text"
-                    id="username"
-                    name="username"
-                    autoComplete="username"
+                    type="number"
+                    id="minPrice"
+                    name="minPrice"
+                    autoComplete="off"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="maxPrice">Maximum Price</label>
                   <Field
-                    type="email"
-                    id="email"
-                    name="email"
-                    autoComplete="email"
+                    type="number"
+                    id="maxPrice"
+                    name="maxPrice"
+                    autoComplete="off"
                   />
-                  <ErrorMessage name="email" id="form_email_id" />
                 </div>
 
-                <button type="submit" disabled={isPropertyAdded}>
+                <button
+                  type="submit"
+                  disabled={isPropertyAdded}
+                  onClick={async () => {
+                    if (!isValid) return;
+
+                    await dispatch(addProperty(values));
+                    alert("Property added success!");
+                  }}
+                >
                   Add Property
                 </button>
               </div>

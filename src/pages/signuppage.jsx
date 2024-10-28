@@ -4,6 +4,7 @@ import { createUser } from "../reducers/signup.reducer";
 import { useForm } from "../hooks";
 import Form from "../common/components/Form";
 import { ErrorMessage, Field } from "formik";
+import "./styles/signup.css";
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ export default function SignUpForm() {
                 if (!isValid) return;
 
                 await dispatch(createUser(values));
+                alert("User saved!");
               }}
             >
               Sign Up

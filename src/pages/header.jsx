@@ -1,12 +1,27 @@
+import { Link } from "react-router-dom";
 import HomeLogo from "../assets/img/real-home-logo.jpg";
 import "./styles/Header.css"; // Update the import path for Header.css
+import { useEffect } from "react";
+import { listRealEstateTypes } from "../reducers/realestatetypes.reducer";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const { loading, error } = useSelector((state) => state.realEstateTypes);
+
+  useEffect(() => {
+    dispatch(listRealEstateTypes());
+  }, [dispatch]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div>
       <header className="header flex flex-col justify-between gap-2 pb-4 pt-2 md:flex-row md:items-center">
         <div className="logo-container flex flex-row">
-          <a href="/home">
+          <a href="/">
             <img
               className="logo h-10 w-10 rounded-full"
               src={HomeLogo}
@@ -52,14 +67,39 @@ const Header = () => {
 
             {/* Dropdown Menu */}
             <div className="dropdown-menu absolute hidden bg-white border border-gray-200 mt-1 rounded-md shadow-lg z-10">
-              <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                <a href="/rent" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+              <div
+                className="py-1"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="options-menu"
+              >
+                <a
+                  href="/rent"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  role="menuitem"
+                >
                   Rent
                 </a>
-                <a href="/buy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                <a
+                  href="/"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  role="menuitem"
+                >
                   Buy
                 </a>
-                <a href="/sell" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                <Link
+                  to={{
+                    pathname: "/sell",
+                    state: { prevPath: location.pathname },
+                  }}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  role="menuitem"
+                ></Link>
+                <a
+                  href="/sell"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  role="menuitem"
+                >
                   Sell
                 </a>
               </div>

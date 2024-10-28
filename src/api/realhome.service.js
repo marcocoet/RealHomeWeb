@@ -13,7 +13,7 @@ export default class RealHomeService {
         return api.callApi('post', {
             ...__options,
             data: data,
-            uri: '/realestate/add/'
+            uri: '/add-real-estate/'
         })
     }
     static loginUser(data, __options) {
@@ -22,7 +22,11 @@ export default class RealHomeService {
             data: data,
             uri: '/token/'
         })
-    
-        
     }
+    static listRealEstateTypes(__options) {
+        return api.callApi('get', {
+            ...__options,
+            uri: '/realestatetype/list/'
+        })
     }
+}

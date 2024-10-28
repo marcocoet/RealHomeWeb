@@ -21,4 +21,4 @@ const forms = createSlice({
 
 export const { setFormProperties, clearFormProperties } = forms.actions;
 
-export default forms.reducer;
+export default forms.reducer;

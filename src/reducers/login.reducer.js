@@ -4,6 +4,7 @@ import api from '../api/api';
 
 const initialState = {
     isUserLoggedIn: false,
+    isUserLoggingIn: false,
     errorMessage: '',
 }
 
@@ -16,16 +17,19 @@ const logUserInData = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder.addCase(logUserIn.pending, (state) => {
-            state.isUserLoggedIn = true;
+            state.isUserLoggingIn = true;
+            state.isUserLoggedIn = false;
             state.errorMessage = '';
         });
         builder.addCase(logUserIn.fulfilled, (state, action) => {
             api.setToken(action.payload.access)
-            state.isUserLoggedIn = false;
+            state.isUserLoggingIn = false;
+            state.isUserLoggedIn = true;
             state.errorMessage = '';
         });
         builder.addCase(logUserIn.rejected, (state) => {
             api.setToken('')
+            state.isUserLoggingIn = false;
             state.isUserLoggedIn = false;
             state.errorMessage = 'Could not log in';
         });

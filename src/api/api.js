@@ -1,7 +1,9 @@
-import conf from "../config/config.json";
+
 import Utils from "./utils";
 import { EventEmitter } from 'fbemitter';
 import ErrorMessageFormatter from '../error-message.js/error-messages';
+import conf from "../config/config"
+import { jwtDecode } from "jwt-decode";
 
 const emitter = new EventEmitter();
 
@@ -26,6 +28,25 @@ class Api {
   getToken() {
     return localStorage.getItem('token');
   }
+
+  hasValidToken() {
+    var token = this.getToken();
+    if (!token) return false;
+
+    return !this.isTokenExpired(token);
+  }
+
+  isTokenExpired(token) {
+    if (!token) return true;
+    try {
+      const decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      return decodedToken.exp < currentTime;
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return true;
+    }
+  };
 
   callApi(method, options) {
     let completeUrl = options && options.completeUrl

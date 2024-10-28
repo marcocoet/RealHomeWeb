@@ -4,13 +4,21 @@ import { logUserIn } from "../reducers/login.reducer";
 import { useForm } from "../hooks";
 import Form from "../common/components/Form";
 import { ErrorMessage, Field } from "formik";
+import "./styles/LoginPage.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function LogininPage() {
+export default function LoginPage() {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || "/";
 
-  const isUserLoggingIn = useSelector(
-    ({ logUserIn }) => logUserIn?.isUserLoggingIn
-  );
+  const isUserLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
+  const isUserLoggingIn = useSelector((state) => state.login.isUserLoggingIn);
+
+  if (isUserLoggedIn) {
+    navigate(from, { replace: true }); // Use replace to avoid going back to login
+  }
 
   const { isValid, values } = useForm("loguserin");
 
